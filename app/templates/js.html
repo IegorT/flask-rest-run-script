@@ -2,23 +2,48 @@
 
 <script type="text/javascript">
 
+<!--function runScript() {-->
+    <!--let forSend = document.getElementById("scriptName").value;-->
+    <!--if (forSend !== "") {-->
+        <!--fetch('http://127.0.0.1:5000/run?script_name=' + forSend).then(function(response) {-->
+	    <!--// Convert to JSON-->
+	        <!--return response.json();-->
+        <!--}).then(function(j) {-->
+            <!--console.log(j);-->
+            <!--document.getElementById("name").textContent = j["name"];-->
+            <!--if (j["message"] == 'OK'){-->
+            <!--document.getElementById("data").textContent = j["data"];-->
+            <!--} else {-->
+            <!--document.getElementById("data").textContent = j["message"];-->
+            <!--}-->
+        <!--});-->
+    <!--}-->
+<!--}-->
+
+
 function runScript() {
     let forSend = document.getElementById("scriptName").value;
     if (forSend !== "") {
-        fetch('/run?script_name=' + forSend).then(function(response) {
-	    // Convert to JSON
-	        return response.json();
-        }).then(function(j) {
-            document.getElementById("name").textContent = j["name"];
-            if (j["message"] == 'OK'){
-            document.getElementById("data").textContent = j["data"];
-            } else {
-            document.getElementById("data").textContent = j["message"];
-            }
-        });
+        var xhr = new XMLHttpRequest();
+
+        xhr.open('GET', 'http://127.0.0.1:5000/run?script_name=' + forSend, true);
+
+        xhr.send();
+
+        xhr.onreadystatechange = function() {
+            if (this.readyState != 4) return;
+
+            console.log(this.statusText);
+
+          if (this.status != 200) {
+            alert( 'error: ' + (this.status ? this.statusText : "request doesn't send"));
+            return;
+          }
+
+          console.log(this.responseText);
+            };
     }
 }
-
 
 document.getElementById("start").onclick = runScript;
 
