@@ -36,12 +36,12 @@ function runScript() {
             console.log(this.statusText);
 
           if (this.status != 200) {
-            alert( 'error: ' + (this.status ? this.statusText : "request doesn't send"));
+            alert( 'error: ' + (this.status ? this.statusText : "Something went wrong"));
             return;
           }
 
           console.log(this.responseText);
-            };
+         };
     }
 }
 
