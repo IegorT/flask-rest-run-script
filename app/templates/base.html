@@ -1,0 +1,18 @@
+{# This is the main template for rendering html page. The better way organizing is to separate the common from all
+pages into this one. The "block content" is changeable part. And if you want to add same test, style or js-scripts
+to this page you could use "include". More information "http://jinja.pocoo.org/docs/2.9/templates/" #}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{title}} - (Site name)</title>
+</head>
+<body>
+    <input id='scriptName' type="text" placeholder="Enter a script name">
+    <button name="run" id="start">Run</button>
+    {% block content %}{% endblock %}
+    {% include 'js.html' %}
+</body>
+</html>

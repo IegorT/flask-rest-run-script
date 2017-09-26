@@ -1,0 +1,25 @@
+{# this js will be appeared after main part in "body" html #}
+
+<script type="text/javascript">
+
+function runScript() {
+    let forSend = document.getElementById("scriptName").value;
+    if (forSend !== "") {
+        fetch('/run?script_name=' + forSend).then(function(response) {
+	    // Convert to JSON
+	        return response.json();
+        }).then(function(j) {
+            document.getElementById("name").textContent = j["name"];
+            if (j["message"] == 'OK'){
+            document.getElementById("data").textContent = j["data"];
+            } else {
+            document.getElementById("data").textContent = j["message"];
+            }
+        });
+    }
+}
+
+
+document.getElementById("start").onclick = runScript;
+
+</script>
