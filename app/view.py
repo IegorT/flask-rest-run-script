@@ -15,7 +15,7 @@ def root():
 @app.route('/run')
 @cross_origin()
 def run_script():
-    """Accepting AJAX request and rendering JSON response
+    """Accepting CORS and rendering JSON response
     in format:
     data = {
         'name': '', <= Name that accepted from request
