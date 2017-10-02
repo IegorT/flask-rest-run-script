@@ -9,10 +9,12 @@ scripts_dict = {
 }
 
 
-def run_script(name=None):
+def run_script(name=None, args=None):
     """Return the data from the running script if it is exists else None"""
-    if name in scripts_dict:
+    if name in scripts_dict and not args:
         return scripts_dict.get(name)()
+    elif args:
+        return scripts_dict.get(name)(args)
     return None
 
 
@@ -20,4 +22,4 @@ if __name__ == "__main__":
     # Here, usually, writing some test for checking if the this function running fell.
     # This part run only if you executing this script from the shell "python controller.py"
     print(run_script('script_1'))
-    print(run_script('script_2'))
+    print(run_script('script_2', (0, 10, 5)))
